@@ -1,3 +1,6 @@
 [submodule "GC9A01_drivers"]
 	path = GC9A01_drivers
 	url = https://github.com/KalinD/GC9A01_drivers
+[submodule "GameBoyEmulator"]
+	path = GameBoyEmulator
+	url = https://github.com/KalinD/GameBoyEmulator
