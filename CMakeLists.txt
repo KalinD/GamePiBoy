@@ -34,15 +34,23 @@ project(GamePiBoy C CXX ASM)
 pico_sdk_init()
 
 # Add executable. Default name is the project name, version 0.1
+add_executable(
+    GamePiBoy
+    ${CMAKE_CURRENT_LIST_DIR}/GamePiBoy.cpp
+    ${CMAKE_CURRENT_LIST_DIR}/GC9A01_drivers/GC9A01.cpp
+    ${CMAKE_CURRENT_LIST_DIR}/GameBoyEmulator/src/memory.cpp
+    ${CMAKE_CURRENT_LIST_DIR}/GameBoyEmulator/src/cpu.cpp
+    ${CMAKE_CURRENT_LIST_DIR}/GameBoyEmulator/src/ppu.cpp
+    ${CMAKE_CURRENT_LIST_DIR}/GameBoyEmulator/src/GB.cpp
+)
 
-add_executable(GamePiBoy GamePiBoy.c )
 
 pico_set_program_name(GamePiBoy "GamePiBoy")
 pico_set_program_version(GamePiBoy "0.1")
 
 # Modify the below lines to enable/disable output over UART/USB
+pico_enable_stdio_usb(GamePiBoy 1)
 pico_enable_stdio_uart(GamePiBoy 0)
-pico_enable_stdio_usb(GamePiBoy 0)
 
 # Add the standard library to the build
 target_link_libraries(GamePiBoy
@@ -51,13 +59,15 @@ target_link_libraries(GamePiBoy
 # Add the standard include files to the build
 target_include_directories(GamePiBoy PRIVATE
         ${CMAKE_CURRENT_LIST_DIR}
+        ${CMAKE_CURRENT_LIST_DIR}/GC9A01_drivers/
+        ${CMAKE_CURRENT_LIST_DIR}/GameBoyEmulator/includes/
 )
 
 # Add any user requested libraries
 target_link_libraries(GamePiBoy 
         hardware_spi
-        
-        )
+        pico_time
+)
 
 pico_add_extra_outputs(GamePiBoy)
 
