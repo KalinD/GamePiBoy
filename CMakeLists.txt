@@ -41,6 +41,7 @@ add_executable(
     ${CMAKE_CURRENT_LIST_DIR}/GameBoyEmulator/src/memory.cpp
     ${CMAKE_CURRENT_LIST_DIR}/GameBoyEmulator/src/cpu.cpp
     ${CMAKE_CURRENT_LIST_DIR}/GameBoyEmulator/src/ppu.cpp
+    ${CMAKE_CURRENT_LIST_DIR}/GB_PPU_GC9A01.cpp
     ${CMAKE_CURRENT_LIST_DIR}/GameBoyEmulator/src/GB.cpp
 )
 
