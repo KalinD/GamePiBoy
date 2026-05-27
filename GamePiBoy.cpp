@@ -13,7 +13,7 @@
 #include "GB.hpp"
 #include "GB_PPU_GC9A01.hpp"
 #include "clock.hpp"
-// #include "Tetris.hpp"
+// TODO: Include game file
 
 #define SPI_PORT spi0
 #define PIN_MISO 16
@@ -28,10 +28,12 @@ int main() {
     
     std::shared_ptr<Memory> memory = std::make_shared<Memory>();
     std::unique_ptr<GB_PPU_GC9A01> ppu = std::make_unique<GB_PPU_GC9A01>(memory, SPI_PORT, PIN_MISO, PIN_CS, PIN_SCK, PIN_MOSI, PIN_RST, PIN_DC);
-    std::unique_ptr<GB> gameboy = std::make_unique<GB>(memory, std::move(ppu));
+    std::unique_ptr<CPU> cpu = std::make_unique<CPU>(memory);
+    std::unique_ptr<GB> gameboy = std::make_unique<GB>(memory, std::move(cpu), std::move(ppu));
     
+    // TODO: Add games here
     // uint32 index = 0U;
-    // for (uint8 byte : Tetris) {
+    // for (uint8 byte : Game) {
     //     gameboy->addByte(byte, index);
     //     ++index;
     // }
